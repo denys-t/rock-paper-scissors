@@ -14,7 +14,8 @@ function computerPlay() {
 }
 
 function playerPlay() {
-    let playerMoveLtr = window.prompt("Choose your move: R = rock, P = paper, S = scissors").toUpperCase();
+    let playerMoveLtr = window.prompt("Choose your move: R = rock, P = paper, S = scissors");
+    playerMoveLtr = playerMoveLtr[0].toUpperCase();
     switch (playerMoveLtr) {
         case "R": return "Rock";
         case "P": return "Paper";
