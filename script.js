@@ -1,7 +1,9 @@
-let cpuMove = computerPlay();
-let playerMove = playerPlay();
+let cpuMove;
+let playerMove;
+let playerScore = 0;
+let computerScore = 0;
 
-playRound(playerMove, cpuMove);
+console.log(game(5));
 
 function computerPlay() {
     let cpuMoveNum = Math.ceil(Math.random() * 3);
@@ -28,37 +30,60 @@ function playRound(playerSelection, computerSelection) {
     let endGame = false;
 
     while (!endGame) {
+        cpuMove = computerPlay();
+        playerMove = playerPlay();
+
         console.log("Computer got " + cpuMove);
         console.log("You got " + playerMove);
 
         if (playerMove == cpuMove) {
-            console.log("It's a tie! Try again");
-            cpuMove = computerPlay();
-            playerMove = playerPlay();
+            return "It's a tie! Try again";
         } else if (playerMove == "Rock") {
             if(cpuMove == "Paper") {
-                console.log("Paper covers Rock. You lose!");
+                return "Paper covers Rock. You lose!";
+                computerScore += 1;
                 endGame = true;
             } else if (cpuMove == "Scissors") {
-                console.log("Rock crashes Scissors. You won!");
+                return "Rock crashes Scissors. You won!";
+                playerScore += 1;
                 endGame = true;
             }
         } else if (playerMove == "Paper") {
             if(cpuMove == "Rock") {
-                console.log("Paper covers Rock. You won!");
+                return "Paper covers Rock. You won!";
+                playerScore += 1;
                 endGame = true;
             } else if (cpuMove == "Scissors") {
-                console.log("Scissors cut paper. You lose!");
+                return "Scissors cut paper. You lose!";
+                computerScore += 1;
                 endGame = true;
             }
         } else if (playerMove == "Scissors") {
             if(cpuMove == "Paper") {
-                console.log("Scissors cut paper. You won!");
+                return "Scissors cut paper. You won!";
+                playerScore += 1;
                 endGame = true;
             } else if (cpuMove == "Rock") {
-                console.log("Rock crashes Scissors. You lose!");
+                return "Rock crashes Scissors. You lose!";
+                computerScore += 1;
                 endGame = true;
             }
         }
     }    
+}
+
+function game(numberOfRounds = 1) {
+
+    for (let i = 1; i <= numberOfRounds; i++){
+        console.log("=== ROUND " + i + " ===");
+        console.log(playRound(playerMove, cpuMove));
+    }
+
+    if (playerScore > computerScore) {
+        return "Congratulatioons! You won " + playerScore + ":" + computerScore + "!";
+    } else if (playerScore < computerScore) {
+        return "Oh sorrow! You lost " + computerScore + ":" + playerScore + "!";
+    } else if (playerScore == computerScore) {
+        return "Well, it's a tie. Score " + computerScore + ":" + playerScore + "!";
+    }
 }
