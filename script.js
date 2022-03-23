@@ -16,13 +16,23 @@ function computerPlay() {
 }
 
 function playerPlay() {
-    let playerMoveLtr = window.prompt("Choose your move: R = rock, P = paper, S = scissors");
-    playerMoveLtr = playerMoveLtr[0].toUpperCase();
-    switch (playerMoveLtr) {
-        case "R": return "Rock";
-        case "P": return "Paper";
-        case "S": return "Scissors";
-        default: return "Error";
+
+    while (true) {
+        let playerMoveLtr = window.prompt("Choose your move: R = rock, P = paper, S = scissors");
+            if (playerMoveLtr != null && playerMoveLtr.length > 0) {
+                playerMoveLtr = playerMoveLtr[0].toUpperCase();
+            }
+
+        switch (playerMoveLtr) {
+            case "R": 
+                return "Rock";
+            case "P": 
+                return "Paper";
+            case "S": 
+                return "Scissors";
+            default:
+                console.log("Error, try again");
+        }
     }        
 }
 
