@@ -31,7 +31,7 @@ function playerPlay() {
             case "S": 
                 return "Scissors";
             default:
-                console.log("Error, try again");
+                console.log("Invalid selection, please, try again");
         }
     }        
 }
@@ -47,36 +47,30 @@ function playRound(playerSelection, computerSelection) {
         console.log("You got " + playerMove);
 
         if (playerMove == cpuMove) {
-            return "It's a tie! Try again";
+            console.log("It's a tie! Try again");
         } else if (playerMove == "Rock") {
             if(cpuMove == "Paper") {
-                return "Paper covers Rock. You lose!";
                 computerScore += 1;
-                endGame = true;
+                return "Paper covers Rock. You lose!";
             } else if (cpuMove == "Scissors") {
-                return "Rock crashes Scissors. You won!";
                 playerScore += 1;
-                endGame = true;
+                return "Rock crashes Scissors. You won!";
             }
         } else if (playerMove == "Paper") {
             if(cpuMove == "Rock") {
-                return "Paper covers Rock. You won!";
                 playerScore += 1;
-                endGame = true;
+                return "Paper covers Rock. You won!";
             } else if (cpuMove == "Scissors") {
-                return "Scissors cut paper. You lose!";
                 computerScore += 1;
-                endGame = true;
+                return "Scissors cut paper. You lose!";
             }
         } else if (playerMove == "Scissors") {
             if(cpuMove == "Paper") {
-                return "Scissors cut paper. You won!";
                 playerScore += 1;
-                endGame = true;
+                return "Scissors cut paper. You won!";
             } else if (cpuMove == "Rock") {
-                return "Rock crashes Scissors. You lose!";
                 computerScore += 1;
-                endGame = true;
+                return "Rock crashes Scissors. You lose!";
             }
         }
     }    
