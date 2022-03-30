@@ -1,9 +1,16 @@
 let cpuMove;
-let playerMove;
 let playerScore = 0;
 let computerScore = 0;
 
-console.log(game(5));
+const buttons = document.querySelectorAll('button');
+buttons.forEach( (button) => {
+    button.addEventListener('click', function(){
+        playRound(button.id);
+    });
+});
+
+const divResult = document.querySelector('#result');
+divResult.setAttribute('style', 'white-space: pre;');
 
 function computerPlay() {
     let cpuMoveNum = Math.ceil(Math.random() * 3);
@@ -15,72 +22,46 @@ function computerPlay() {
     }        
 }
 
-function playerPlay() {
+function playRound(playerSelection) {
+    computerSelection = computerPlay().toUpperCase();
+    playerSelection = playerSelection.toUpperCase();
 
-    while (true) {
-        let playerMoveLtr = window.prompt("Choose your move: R = rock, P = paper, S = scissors");
-            if (playerMoveLtr != null && playerMoveLtr.length > 0) {
-                playerMoveLtr = playerMoveLtr[0].toUpperCase();
-            }
+    divResult.textContent = `Computer got ${computerSelection}. You got ${playerSelection}.\r\n`;
 
-        switch (playerMoveLtr) {
-            case "R": 
-                return "Rock";
-            case "P": 
-                return "Paper";
-            case "S": 
-                return "Scissors";
-            default:
-                console.log("Invalid selection, please, try again");
+    if (playerSelection == computerSelection) {
+        divResult.textContent += "It's a tie! Try again!";
+    } else if (playerSelection == "ROCK") {
+        if(computerSelection == "PAPER") {
+            computerScore += 1;
+            divResult.textContent +=  "Paper covers Rock. You lose!";
+        } else if (computerSelection == "SCISSORS") {
+            playerScore += 1;
+            divResult.textContent += "Rock crashes Scissors. You won!";
         }
-    }        
-}
-
-function playRound(playerSelection, computerSelection) {
-    let endGame = false;
-
-    while (!endGame) {
-        cpuMove = computerPlay();
-        playerMove = playerPlay();
-
-        console.log("Computer got " + cpuMove);
-        console.log("You got " + playerMove);
-
-        if (playerMove == cpuMove) {
-            console.log("It's a tie! Try again");
-        } else if (playerMove == "Rock") {
-            if(cpuMove == "Paper") {
-                computerScore += 1;
-                return "Paper covers Rock. You lose!";
-            } else if (cpuMove == "Scissors") {
-                playerScore += 1;
-                return "Rock crashes Scissors. You won!";
-            }
-        } else if (playerMove == "Paper") {
-            if(cpuMove == "Rock") {
-                playerScore += 1;
-                return "Paper covers Rock. You won!";
-            } else if (cpuMove == "Scissors") {
-                computerScore += 1;
-                return "Scissors cut paper. You lose!";
-            }
-        } else if (playerMove == "Scissors") {
-            if(cpuMove == "Paper") {
-                playerScore += 1;
-                return "Scissors cut paper. You won!";
-            } else if (cpuMove == "Rock") {
-                computerScore += 1;
-                return "Rock crashes Scissors. You lose!";
-            }
+    } else if (playerSelection == "PAPER") {
+        if(computerSelection == "ROCK") {
+            playerScore += 1;
+            divResult.textContent += "Paper covers Rock. You won!";
+        } else if (computerSelection == "SCISSORS") {
+            computerScore += 1;
+            divResult.textContent += "Scissors cut paper. You lose!";
         }
-    }    
+    } else if (playerSelection == "SCISSORS") {
+        if(computerSelection == "PAPER") {
+            playerScore += 1;
+            divResult.textContent += "Scissors cut paper. You won!";
+        } else if (computerSelection == "ROCK") {
+            computerScore += 1;
+            divResult.textContent += "Rock crashes Scissors. You lose!";
+        }
+    }  
 }
 
 function game(numberOfRounds = 1) {
 
     for (let i = 1; i <= numberOfRounds; i++){
         console.log("=== ROUND " + i + " ===");
-        console.log(playRound(playerMove, cpuMove));
+        console.log(playRound(playerSelection, cpuMove));
     }
 
     if (playerScore > computerScore) {
