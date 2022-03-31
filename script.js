@@ -54,21 +54,23 @@ function playRound(playerSelection) {
             computerScore += 1;
             divResult.textContent += "Rock crashes Scissors. You lose!";
         }
-    }  
+    }
+    divResult.textContent += `\r\nScore: computer - ${computerScore}, you - ${playerScore}.\r\n`; 
+    
+    if (playerScore == 5 || computerScore == 5) {
+        divResult.textContent += checkEndGame();
+
+        playerScore = 0;
+        computerScore = 0;
+    }
 }
 
-function game(numberOfRounds = 1) {
-
-    for (let i = 1; i <= numberOfRounds; i++){
-        console.log("=== ROUND " + i + " ===");
-        console.log(playRound(playerSelection, cpuMove));
-    }
+function checkEndGame() {
 
     if (playerScore > computerScore) {
-        return "Congratulatioons! You won " + playerScore + ":" + computerScore + "!";
+        return `Congratulatioons! You won ${playerScore} : ${computerScore}!`;
     } else if (playerScore < computerScore) {
-        return "Oh sorrow! You lost " + computerScore + ":" + playerScore + "!";
-    } else if (playerScore == computerScore) {
-        return "Well, it's a tie. Score " + computerScore + ":" + playerScore + "!";
+        return `Well, the machine is smarter. You lost ${computerScore} : ${playerScore}.`;
     }
+
 }
