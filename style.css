@@ -1,0 +1,52 @@
+html {
+    background: url('img/background.jpg') bottom center;
+    background-size: cover;
+    opacity: 0.8;
+    font-family: 'Lato', sans-serif;
+    font-size: 80px;
+  }
+
+#container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+button {
+    background-color: aquamarine;
+    border: 2px solid black;;
+    border-radius: 15px;
+    font: inherit;
+}
+
+.button-hover:hover {
+    transform: scale(1.1);
+    background-color: gold;
+}
+
+button img {
+    padding: 10px;
+}
+
+button[data-type=computer] {
+    background-color: crimson;
+}
+
+#result {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(240, 255, 255, 0.7);
+    text-align: center;
+    word-wrap: wrap;
+    white-space: pre;
+}

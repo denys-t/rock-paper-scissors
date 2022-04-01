@@ -5,12 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="script.js" type="text/javascript" defer></script>
+    <link rel="stylesheet" href="style.css">
     <title>Rock-paper-scissors</title>
 </head>
 <body>
-    <button id="rock">ROCK</button>
-    <button id="paper">PAPER</button>
-    <button id="scissors">SCISSORS</button>
-    <div id="result"></div>
+    <div id="container">
+        <div id="buttons-container">
+            <button id="rock" data-type="player"><img src="img/rock-100.png" alt="icon-rock" /></button>
+            <button id="paper" data-type="player"><img src="img/paper-100.png" alt="icon-paper" /></button>
+            <button id="scissors" data-type="player"><img src="img/scissors-100.png" alt="icon-scissors" /></button>
+
+            <button id="rock-c" data-type="computer" hidden disabled><img src="img/rock-100.png" alt="icon-rock" /></button>
+            <button id="paper-c" data-type="computer" hidden disabled><img src="img/paper-100.png" alt="icon-paper" /></button>
+            <button id="scissors-c" data-type="computer" hidden disabled><img src="img/scissors-100.png" alt="icon-scissors" /></button>
+        </div>
+        <div id="result">0 : 0</div>
+        <button id="continue-game" class="button-hover" hidden>Continue</button>
+        <button id="new-game" class="button-hover" hidden>New game</button>
+    </div>
 </body>
 </html>
